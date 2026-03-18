@@ -5,8 +5,13 @@ public class EnemyNavMove : MonoBehaviour
 {
     GameObject player;
     NavMeshAgent agent;
-    public float chaseDistance = 10;
+
+    [Header("Distances")]
+    public float chaseStartDistance = 10f; // aggro range
+    public float chaseStopDistance = 20f;  // de-aggro range
+
     private Vector3 home;
+    private bool isChasing = false;
 
     void Start()
     {
@@ -19,9 +24,24 @@ public class EnemyNavMove : MonoBehaviour
     {
         if (player == null) return;
 
-        Vector3 direction = player.transform.position - transform.position;
+        float distance = Vector3.Distance(transform.position, player.transform.position);
 
-        if (direction.magnitude < chaseDistance)
+        // Start chasing
+        if (!isChasing && distance <= chaseStartDistance)
+        {
+            isChasing = true;
+            Debug.Log("Enemy: Player detected, starting chase!");
+        }
+
+        // Stop chasing
+        if (isChasing && distance >= chaseStopDistance)
+        {
+            isChasing = false;
+            Debug.Log("Enemy: Player escaped, returning home.");
+        }
+
+        // Apply movement
+        if (isChasing)
         {
             agent.destination = player.transform.position;
         }
@@ -31,19 +51,22 @@ public class EnemyNavMove : MonoBehaviour
         }
     }
 
-    // Gizmos for visualization
     void OnDrawGizmosSelected()
     {
-        // Draw chase range
+        // Start chase range
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseDistance);
+        Gizmos.DrawWireSphere(transform.position, chaseStartDistance);
 
-        // Draw home position
+        // Stop chase range
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseStopDistance);
+
+        // Home position
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(home, 0.3f);
+        Vector3 drawHome = Application.isPlaying ? home : transform.position;
+        Gizmos.DrawSphere(drawHome, 0.3f);
 
-        // Draw line to home
         Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(transform.position, home);
+        Gizmos.DrawLine(transform.position, drawHome);
     }
 }

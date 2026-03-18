@@ -15,15 +15,33 @@ public class EnemyMelee : MonoBehaviour
     public string attackTriggerName = "Attack";
 
     private float lastAttackTime;
+    private bool wasInRange = false;
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null)
+        {
+            Debug.LogWarning("EnemyMelee: No player assigned!");
+            return;
+        }
 
         float distance = Vector3.Distance(transform.position, player.position);
 
+        // Log entering/exiting range
+        if (distance <= attackRange && !wasInRange)
+        {
+            Debug.Log("Enemy entered attack range.");
+            wasInRange = true;
+        }
+        else if (distance > attackRange && wasInRange)
+        {
+            Debug.Log("Enemy left attack range.");
+            wasInRange = false;
+        }
+
         if (distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
         {
+            Debug.Log("Enemy attacking!");
             Attack();
         }
     }
@@ -32,13 +50,12 @@ public class EnemyMelee : MonoBehaviour
     {
         lastAttackTime = Time.time;
 
-        // Trigger animation if available
         if (animator != null && !string.IsNullOrEmpty(attackTriggerName))
         {
             animator.SetTrigger(attackTriggerName);
+            Debug.Log("Attack animation triggered.");
         }
 
-        // Deal damage
         DealDamage();
     }
 
@@ -48,7 +65,6 @@ public class EnemyMelee : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
 
-        // Double-check range at hit moment
         if (distance <= attackRange)
         {
             PlayerHealth health = player.GetComponent<PlayerHealth>();
@@ -56,11 +72,19 @@ public class EnemyMelee : MonoBehaviour
             if (health != null)
             {
                 health.TakeDamage(attackDamage);
+                Debug.Log("Enemy dealt " + attackDamage + " damage to player.");
             }
+            else
+            {
+                Debug.LogWarning("PlayerHealth component not found on player!");
+            }
+        }
+        else
+        {
+            Debug.Log("Attack missed (player out of range at hit moment).");
         }
     }
 
-    // Optional: visualize attack range in editor
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
