@@ -28,9 +28,24 @@ public class GreedFactor : MonoBehaviour
             playerController = GetComponent<FirstPersonController>();
         }
 
-        // Store original values from Starter Assets controller
+        // Store original values
         baseSpeed = playerController.MoveSpeed;
         baseJumpHeight = playerController.JumpHeight;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            AddCoin();
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Food"))
+        {
+            AddFood();
+            Destroy(other.gameObject);
+        }
     }
 
     // Call this when a coin is collected
@@ -54,7 +69,7 @@ public class GreedFactor : MonoBehaviour
         float newSpeed = baseSpeed - (totalItems * speedPenaltyPerItem);
         float newJump = baseJumpHeight - (totalItems * jumpPenaltyPerItem);
 
-        // Clamp so player still functions
+        // Clamp values so player still functions
         playerController.MoveSpeed = Mathf.Max(minSpeed, newSpeed);
         playerController.JumpHeight = Mathf.Max(minJumpHeight, newJump);
     }

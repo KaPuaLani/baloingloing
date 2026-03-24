@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - GameOptions
+  - CinemachineTarget
+  - Coin
   layers:
   - Default
   - TransparentFX
