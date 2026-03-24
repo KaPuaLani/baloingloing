@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 505703773}
   - component: {fileID: 505703772}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
