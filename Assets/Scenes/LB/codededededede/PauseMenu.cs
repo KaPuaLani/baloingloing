@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField]
     public string levelToLoad;
     // Start is called before the first frame update
     void Start()
