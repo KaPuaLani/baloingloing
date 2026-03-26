@@ -7,6 +7,7 @@ TagManager:
   - GameOptions
   - CinemachineTarget
   - Coin
+  - Bullet
   layers:
   - Default
   - TransparentFX
