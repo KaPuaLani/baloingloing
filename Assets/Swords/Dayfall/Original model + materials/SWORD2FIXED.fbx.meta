@@ -3,7 +3,22 @@ guid: 8246b241fa14edd4dbaae00fae6d0d3c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blue_metal_plate
+    second: {fileID: 2100000, guid: 79b593ea1ac39b14eb93b4828aa31a06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blue_metal_plate.001
+    second: {fileID: 2100000, guid: 9c0a0a5f59508df48b8f88c218f84f5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blue_metal_plate.002
+    second: {fileID: 2100000, guid: c8e54e06dcef7e14494de7fca1d66762, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,32 @@ guid: 7569478f00a798d4e81448008ba4dbfa
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blue_metal_plate
+    second: {fileID: 2100000, guid: 6b1f7f3ad32f0e74292d0d71f9217a1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blue_metal_plate.001
+    second: {fileID: 2100000, guid: 6b1f7f3ad32f0e74292d0d71f9217a1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blue_metal_plate.002
+    second: {fileID: 2100000, guid: 7faca3a97eb8229468b35847170ae67f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blue_metal_plate.003
+    second: {fileID: 2100000, guid: 7faca3a97eb8229468b35847170ae67f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blue_metal_plate.004
+    second: {fileID: 2100000, guid: 7faca3a97eb8229468b35847170ae67f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
