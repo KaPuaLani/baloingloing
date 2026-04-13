@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
             }
         }
         //if we collide with the health pack collectable
-        if(collision.gameObject.tag == "HealthPack")
+        if(collision.gameObject.tag == "Food")
         {
             //increase the health value
             health++;

@@ -7,7 +7,9 @@ TagManager:
   - GameOptions
   - CinemachineTarget
   - Coin
-  - Bullet
+  - Food
+  - PlayerBullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
