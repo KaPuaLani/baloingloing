@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 8355276238678834315}
   - component: {fileID: 8355276238678834316}
   - component: {fileID: 8355276238678834317}
-  - component: {fileID: 8355276238678834318}
+  - component: {fileID: 8355276238678834319}
   - component: {fileID: 2239283110838359670}
   m_Layer: 8
   m_Name: PlayerCapsule
@@ -2469,7 +2469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectables
   coins: 0
---- !u!114 &8355276238678834318
+--- !u!114 &8355276238678834319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2478,15 +2478,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2239283110838359674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10436838744ddfc4ba6431c65fac8da1, type: 3}
+  m_Script: {fileID: 11500000, guid: 13d6e1de1645b084e99f8ca26013fa64, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RaycastShoot
-  action: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  projectileShoot: 1
-  prefab: {fileID: 8253757299157906647, guid: 4f2c5ece5a35f0d45a6d5db492483084, type: 3}
-  spawnPosition: {fileID: 202398622}
-  shootSpeed: 25
-  bulletLifetime: 10
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
+  range: 4
+  damage: 1
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  attackPoint: {fileID: 202398622}
 --- !u!1 &8875550854507062146
 GameObject:
   m_ObjectHideFlags: 0
