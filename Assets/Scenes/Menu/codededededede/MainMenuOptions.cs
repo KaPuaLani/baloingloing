@@ -8,9 +8,11 @@ public class MainMenuOptions : MonoBehaviour
     //Create an empty game object and attach this script to it
     //create a tag called GameOptions and apply it to this object
     // public bool mobile = false;
-    public int mobile = 0;
+   // public int mobile = 0;
     public int difficulty = 0;
-    public int hid = 0;
+    public int hid1 = 0;
+    public int hid2 = 0;
+    public int hid3 = 0;
     //Create a toggle on a canvas, and assign it to this public field
     //On the toggle OnValueChanged field, set it to MainMenuOptions.SetMobile
     public Toggle toggle;
@@ -44,28 +46,48 @@ public class MainMenuOptions : MonoBehaviour
         Debug.Log("h");
     }
 
-    public void PC()
-    {
-        mobile = 2;
-        hid = 1;
-        Debug.Log("pc");
-    }
+    //public void PC()
+  //  {
+   //     mobile = 2;
+    //    hid = 1;
+    //    Debug.Log("pc");
+   // }
 
-    public void MB()
-    {
-        mobile = 1;
-        hid = 0;
-        Debug.Log("mb");
-    }
+    //public void MB()
+    //{
+    //    mobile = 1;
+    //    hid = 0;
+    //    Debug.Log("mb");
+    //}
 
-    public void HIDE()
+    public void HIDE1()
     {
-        hid = 1;
+        hid1 = 0;
         Debug.Log("hidden");
     }
-    public void show()
+    public void show1()
     {
-        hid = 0;
+        hid1 = 1;
+        Debug.Log("reveal");
+    }
+    public void HIDE2()
+    {
+        hid2 = 0;
+        Debug.Log("hidden");
+    }
+    public void show2()
+    {
+        hid2 = 1;
+        Debug.Log("reveal");
+    }
+    public void HIDE3()
+    {
+        hid3 = 0;
+        Debug.Log("hidden");
+    }
+    public void show3()
+    {
+        hid3 = 1;
         Debug.Log("reveal");
     }
     // public void SetMobile()
