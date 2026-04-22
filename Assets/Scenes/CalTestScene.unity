@@ -841,12 +841,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDropLoot
   itemsToDrop:
   - {fileID: 1512569474096316606, guid: e02d74b09decd964eb8ff97f9bd70d8f, type: 3}
-  minDrops: 1000
-  maxDrops: 1000
+  minDrops: 5
+  maxDrops: 10
   dropRadius: 4
   useYOverride: 1
-  spawnYOverride: 2
+  spawnYOverride: 0.15
+  fallbackHeightOffset: 0.15
   dropOnStart: 0
+  verboseDebug: 1
 --- !u!23 &440504380064227316
 MeshRenderer:
   m_ObjectHideFlags: 0

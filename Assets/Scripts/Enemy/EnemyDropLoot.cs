@@ -11,11 +11,13 @@ public class EnemyDropLoot : MonoBehaviour
     public float dropRadius = 3f;
 
     [Header("Y Spawn Control")]
-    public bool useYOverride = false;     // enable override
-    public float spawnYOverride = 0f;     // target Y value
+    public bool useYOverride = false;
+    public float spawnYOverride = 0f;
+    public float fallbackHeightOffset = 2f; // used if override is bad
 
     [Header("Debug")]
     public bool dropOnStart = false;
+    public bool verboseDebug = true;
 
     void Start()
     {
@@ -46,17 +48,55 @@ public class EnemyDropLoot : MonoBehaviour
             GameObject item = itemsToDrop[Random.Range(0, itemsToDrop.Length)];
             if (item == null) continue;
 
-            // Base random position
             Vector2 randomCircle = Random.insideUnitCircle * dropRadius;
-            Vector3 spawnPos = transform.position + new Vector3(randomCircle.x, 0f, randomCircle.y);
 
-            // Apply Y override if enabled
+            float finalY = transform.position.y;
+
             if (useYOverride)
             {
-                spawnPos.y = spawnYOverride;
+                // 🚑 Fix bad override values automatically
+                if (Mathf.Approximately(spawnYOverride, 0f))
+                {
+                    finalY = transform.position.y + fallbackHeightOffset;
+
+                    if (verboseDebug)
+                    {
+                        Debug.LogWarning(
+                            $"[EnemyDropLoot] spawnYOverride was 0. Auto-correcting to {finalY}",
+                            this
+                        );
+                    }
+                }
+                else
+                {
+                    finalY = spawnYOverride;
+                }
             }
 
-            Instantiate(item, spawnPos, Quaternion.identity);
+            Vector3 spawnPos = new Vector3(
+                transform.position.x + randomCircle.x,
+                finalY,
+                transform.position.z + randomCircle.y
+            );
+
+            GameObject spawned = Instantiate(item, spawnPos, Quaternion.identity);
+
+            // 🔒 Enforce Y after spawn
+            if (useYOverride)
+            {
+                Vector3 p = spawned.transform.position;
+                p.y = finalY;
+                spawned.transform.position = p;
+            }
+
+            if (verboseDebug)
+            {
+                Debug.Log(
+                    $"[DROP] '{spawned.name}' final Y={spawned.transform.position.y} " +
+                    $"(override={useYOverride}, inputY={spawnYOverride})",
+                    spawned
+                );
+            }
         }
     }
 
