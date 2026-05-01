@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 4ALPHA
+  m_Name: aura
   m_Shader: {fileID: -6465566751694194690, guid: 8c2f7823bfc553b45917dfc528855695, type: 3}
   m_Parent: {fileID: 2100000, guid: 7401b8c0fd3440741afee26b3f75d560, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -44,6 +44,6 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Base: {r: 1, g: 0.7333333, b: 0, a: 1}
+    - _Base: {r: 1, g: 0.73333335, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
