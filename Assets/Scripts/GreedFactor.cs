@@ -13,12 +13,14 @@ public class GreedFactor : MonoBehaviour
 
     [Header("Minimum Limits")]
     public float minSpeed = 2f;
+    public float minSprintSpeed = 3f;
     public float minJumpHeight = 1f;
 
     [Header("References")]
     public FirstPersonController playerController;
 
     private float baseSpeed;
+    private float baseSprintSpeed;
     private float baseJumpHeight;
 
     void Start()
@@ -28,8 +30,8 @@ public class GreedFactor : MonoBehaviour
             playerController = GetComponent<FirstPersonController>();
         }
 
-        // Store original values
         baseSpeed = playerController.MoveSpeed;
+        baseSprintSpeed = playerController.SprintSpeed;
         baseJumpHeight = playerController.JumpHeight;
     }
 
@@ -40,22 +42,24 @@ public class GreedFactor : MonoBehaviour
             AddCoin();
             Destroy(other.gameObject);
         }
-
-        if (other.CompareTag("Food"))
+        else if (other.CompareTag("Food"))
         {
             AddFood();
             Destroy(other.gameObject);
         }
+        else if (other.CompareTag("Apple"))
+        {
+            ResetGreed();
+            Destroy(other.gameObject);
+        }
     }
 
-    // Call this when a coin is collected
     public void AddCoin(int amount = 1)
     {
         coinsCollected += amount;
         ApplyPenalty();
     }
 
-    // Call this when food is collected
     public void AddFood(int amount = 1)
     {
         foodCollected += amount;
@@ -67,10 +71,21 @@ public class GreedFactor : MonoBehaviour
         int totalItems = coinsCollected + foodCollected;
 
         float newSpeed = baseSpeed - (totalItems * speedPenaltyPerItem);
+        float newSprint = baseSprintSpeed - (totalItems * speedPenaltyPerItem);
         float newJump = baseJumpHeight - (totalItems * jumpPenaltyPerItem);
 
-        // Clamp values so player still functions
         playerController.MoveSpeed = Mathf.Max(minSpeed, newSpeed);
+        playerController.SprintSpeed = Mathf.Max(minSprintSpeed, newSprint);
         playerController.JumpHeight = Mathf.Max(minJumpHeight, newJump);
+    }
+
+    void ResetGreed()
+    {
+        coinsCollected = 0;
+        foodCollected = 0;
+
+        playerController.MoveSpeed = baseSpeed;
+        playerController.SprintSpeed = baseSprintSpeed;
+        playerController.JumpHeight = baseJumpHeight;
     }
 }

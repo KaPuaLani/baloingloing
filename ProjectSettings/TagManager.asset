@@ -10,6 +10,7 @@ TagManager:
   - Food
   - PlayerBullet
   - Enemy
+  - Apple
   layers:
   - Default
   - TransparentFX
